@@ -1,7 +1,6 @@
 import jobsList from "./data.json";
 import { useState } from "react";
 import JobFilters from "./Jobfilters";
-//import JobFilters from "./Jobfilters";
 
 let jobFilters = [];
 
@@ -10,28 +9,56 @@ const JobLists = () => {
   const [filterJobs, setFilterJobs] = useState(jobFilters);
 
   const handleJobsFilter = (e) => {
-    if (jobFilters.indexOf(e.target.value) === -1) {
-      jobFilters = [...jobFilters, e.target.value];
+    const filterBy = e.target.value;
+
+    if (jobFilters.indexOf(filterBy) === -1) {
+      jobFilters = [...jobFilters, filterBy];
       setFilterJobs(jobFilters);
     }
 
-    setJobsData(jobsData.filter(job => {
-      return [...job.languages,job.role,job.level].some( filter => filter.indexOf(e.target.value) >-1)
-    }))
+    setJobsData(
+      jobsData.filter((job) => {
+        return [...job.languages, job.role, job.level].some(
+          (filter) => filter.indexOf(filterBy) > -1
+        );
+      })
+    );
   };
 
   const handleClearFilters = () => {
-    jobFilters=[];
+    jobFilters = [];
     setFilterJobs(jobFilters);
-    setJobsData(jobsList)
-  }
+    setJobsData(jobsList);
+  };
+
+  const handleRemoveFilter = (e) => {
+    jobFilters = jobFilters.filter((job) => job !== e.target.value);
+    setFilterJobs(jobFilters);
+
+    if (jobFilters.length)
+      for (let filter of jobFilters) {
+        setJobsData(
+          jobsList.filter(
+            (job) =>
+              [...job.languages, job.role, job.level].indexOf(filter) > -1
+          )
+        );
+      }
+    else handleClearFilters();
+  };
+
   return (
-    <div>
-      <JobFilters filters={filterJobs} clearFilters = {handleClearFilters} />
+    <div id="container">
+      <JobFilters
+        filters={filterJobs}
+        clearFilters={handleClearFilters}
+        removeFilter={handleRemoveFilter}
+      />
       {jobsData.map((job, UID) => {
         return (
-          <div key={UID}>
-            <div>
+          <div className="list" key={UID}>
+            <div className="company-logo">
+              <div className={job?.featured ? "featured" : null}> </div>
               <img src={job.logo} alt={job.company + " logo"}></img>
             </div>
             <div>

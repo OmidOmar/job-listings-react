@@ -1,0 +1,64 @@
+:root {
+    --main-color: #5da5a4;
+    --bg-color:#f0fafa;
+}
+
+
+header {
+    background-image: url('./images/bg-header-desktop.svg');
+    background-repeat: no-repeat;
+    height: 156px;
+    background-color: var(--main-color);
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+#filter-area,#filter-area > div,
+.list {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-radius: 4px;
+    background-color: white;
+
+}
+
+#filter-area,
+.list,
+.company-logo {
+    border-radius: 4px;
+}
+
+
+#container {
+    margin: auto;
+    width: 80%;
+}
+
+.company-logo {
+    display: flex;
+}
+
+.featured {
+    background-color: var(--main-color);
+    border-radius: 4px 0 0 4px;
+    width: 4px;
+}
+
+.btn-filters-area{
+    margin: 10px;
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    padding: 0 0 0 10px;
+}
+.btn-filters-area button{
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+}
+.btn-filters-area button:hover{
+    background-color: black;
+}

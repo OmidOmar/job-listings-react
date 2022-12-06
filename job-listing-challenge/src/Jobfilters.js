@@ -1,13 +1,17 @@
-const JobFilters = ({ filters, clearFilters }) => {
+const JobFilters = ({ filters, clearFilters,removeFilter }) => {
   return filters.length ? (
-    <div>
+    <div id="filter-area">
       <div>
         {filters.map((filter, UID) => (
-          <button key={UID}>{filter}</button>
+          <p className="btn-filters-area" key={UID}>
+            {filter} <button onClick={removeFilter} value={filter} className="">X</button>
+          </p>
         ))}
       </div>
       <div>
-        <p onClick={clearFilters}>Clear</p>
+        <button className="btn btn-link" onClick={clearFilters}>
+          Clear
+        </button>
       </div>
     </div>
   ) : null;
