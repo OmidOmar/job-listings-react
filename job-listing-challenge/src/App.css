@@ -27,8 +27,7 @@ body {
 }
 
 #filter-area,
-.list,
-.company-logo {
+.list {
     border-radius: 4px;
     box-shadow: #d5ebeb 0px 10px 50px;
 
@@ -136,4 +135,10 @@ body {
 .category button:hover {
     background-color: var(--main-color);
     color: var(--bg-color);
+}
+
+.company-logo img {
+    width: 100px;
+    height: 100px;
+    margin: auto 25px;
 }
