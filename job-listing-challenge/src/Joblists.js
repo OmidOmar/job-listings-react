@@ -57,21 +57,28 @@ const JobLists = () => {
       {jobsData.map((job, UID) => {
         return (
           <div className="list" key={UID}>
-            <div className="company-logo">
-              <div className={job?.featured ? "featured" : null}> </div>
-              <img src={job.logo} alt={job.company + " logo"}></img>
+            <div className="basic-info">
+              <div className="company-logo">
+                <div className={job?.featured ? "featured" : null}> </div>
+                <img src={job.logo} alt={job.company + " logo"}></img>
+              </div>
+              <div className="company-details">
+                <p className="company-name">
+                  {job.company}{" "}
+                  {job.new && <span className="new">{job.new && "NEW!"}</span>}{" "}
+                  {job.featured && (
+                    <span className="feature">
+                      {job.featured && "FEATURED"}
+                    </span>
+                  )}{" "}
+                </p>
+                <h3 className="position">{job.position}</h3>
+                <p className="job-extra-info">{`${job.postedAt} . ${job.contract} . ${job.location}`}</p>
+              </div>
             </div>
-            <div>
-              <p>
-                {job.company} <span>{job.new && "NEW!"}</span>{" "}
-                <span>{job.featured && "FEATURED"}</span>{" "}
-              </p>
-              <h3>{job.position}</h3>
-              <p>{`${job.postedAt} . ${job.contract} . ${job.location}`}</p>
-            </div>
-            <div>
+            <div className="category">
               {[...job.languages, job.level, job.role].map((language, UID) => (
-                <button value={language} onClick={handleJobsFilter} key={UID}>
+                <button className="btn-filters-area" value={language} onClick={handleJobsFilter} key={UID}>
                   {language}
                 </button>
               ))}
